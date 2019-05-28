@@ -1,0 +1,50 @@
+﻿@model exam_1.Models.FileU
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserFile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+        @if (Model.Pass != null)
+        {
+            <form asp-controller="Home" asp-action="CheckPass" method="post" id="@Model.Id" role="form">
+                <input type ="hidden" value="@Model.Id" name="Id"/>
+                <label for="tx">Password</label>
+                <input type="text" id="tx" name="tx" />
+            </form>
+        }
+    </dl>
+</div>
+<div>
+    <a href="\Home\Download?filename=@Model.Id">Download</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
