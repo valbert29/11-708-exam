@@ -55,7 +55,7 @@ using exam_1.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             BeginContext(0, 456, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00a4f78eb6d94780a92632d62dbd4ff0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38a42dbc0d894aee99f8a075d330d4f1", async() => {
                 BeginContext(98, 351, true);
                 WriteLiteral(@"
     <div class=""form-group"">

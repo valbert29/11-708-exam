@@ -24,30 +24,6 @@ namespace exam_1.Controllers
             _appEnvironment = appEnvironment;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -59,7 +35,7 @@ namespace exam_1.Controllers
             return View();
         }
 
-        public async Task<IActionResult> UploadFiles(IFormFileCollection files, string ShortDes, string LongDes)
+        public async Task<IActionResult> UploadFiles(IFormFileCollection files, string ShortDes, string LongDes, string pass)
         {
             foreach(var file in files)
             {
@@ -70,12 +46,12 @@ namespace exam_1.Controllers
                     {
                         await file.CopyToAsync(fileStream);
                     }
-                    var newFile = new FileU { Name = file.FileName, ShortDescription = ShortDes, FullDescription = LongDes, Link = "/Files/"+file.FileName};
+                    var newFile = new FileU { Name = file.FileName, ShortDescription = ShortDes, FullDescription = LongDes, Link = "/Files/"+file.FileName, Pass=pass};
                     db.Files.Add(newFile);
                 }
             }            
             db.SaveChanges();
-            return RedirectToAction("DownloadPage");
+            return RedirectToAction("AllFiles");
         }
 
         public async Task<IActionResult> AllFiles()
@@ -113,13 +89,14 @@ namespace exam_1.Controllers
             return File(fs, file_type, name);
         }
 
-        public void CheckPass(int Id, string tx)
+        public void CheckPass(int Id, string tx, string password)
         {
             var file = db.Files.Find(Id);
-            if (file.Pass == tx)
-            {
-                Download(Id);
-            }
+            //if (tx == password)
+            //{
+            //    Download(Id);
+            //}
+            Download(Id);
         }
     }
 }

@@ -36,15 +36,21 @@
         </dd>
         @if (Model.Pass != null)
         {
-            <form asp-controller="Home" asp-action="CheckPass" method="post" id="@Model.Id" role="form">
-                <input type ="hidden" value="@Model.Id" name="Id"/>
+            <form asp-controller="Home" asp-action="CheckPass" method="post" role="form">
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <input type="hidden" value="@Model.Pass" name="password"/>
                 <label for="tx">Password</label>
                 <input type="text" id="tx" name="tx" />
+                <input type="submit"/>
             </form>
+        }
+        else
+        {
+            <div>
+                <a href="\Home\Download?Id=@Model.Id">Download</a> |
+                <a asp-action="Index">Back to List</a>
+            </div>
         }
     </dl>
 </div>
-<div>
-    <a href="\Home\Download?filename=@Model.Id">Download</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
